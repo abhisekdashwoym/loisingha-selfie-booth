@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate an induction programme selfie booth frame as transparent PNG">
+    <title>Generate Selfie Booth Frame</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1e3a8a;
+            text-align: center;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            background: #3b82f6;
+            color: white;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #1e3a8a;
+            transform: translateY(-2px);
+        }
+        canvas {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #1e3a8a;
+        }
+        .info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Loisingha College Induction Selfie Booth Frame Generator</h1>
+        
+        <div class="info">
+            <p><strong>Instructions:</strong></p>
+            <p>1. Click "Generate Frame" to create the selfie booth frame</p>
+            <p>2. Click "Download as PNG" to save the transparent frame</p>
+            <p>3. Upload the PNG to <code>assets/frame.png</code> in your selfie booth project</p>
+        </div>
+
+        <div class="button-group">
+            <button onclick="generateFrame()">🎨 Generate Frame</button>
+            <button onclick="downloadFrame()">📥 Download as PNG</button>
+            <button onclick="clearCanvas()">🗑️ Clear</button>
+        </div>
+
+        <canvas id="frameCanvas" width="1280" height="720"></canvas>
+
+        <div class="info">
+            <p><strong>Frame Details:</strong></p>
+            <p>• Dimensions: 1280 x 720 pixels (16:9 aspect ratio)</p>
+            <p>• Format: PNG with transparency</p>
+            <p>• College branding: Loisingha College logo and design</p>
+            <p>• Center area: Reserved for selfie (transparent)</p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('frameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function generateFrame() {
+            const width = canvas.width;
+            const height = canvas.height;
+            const borderWidth = 40;
+            const padding = 20;
+
+            // Clear canvas (transparent)
+            ctx.clearRect(0, 0, width, height);
+
+            // Set up gradients and colors
+            const darkBlue = '#1e3a8a';
+            const maroon = '#8B0000';
+            const gold = '#FFD700';
+            const white = '#FFFFFF';
+
+            // Draw decorative top border wave
+            drawTopWave(ctx, width, height);
+
+            // Draw main border frame
+            drawBorder(ctx, width, height, borderWidth, maroon, gold);
+
+            // Draw college logo area (top center)
+            drawLogoArea(ctx, width);
+
+            // Draw header text
+            drawHeaderText(ctx, width);
+
+            // Draw induction banner (bottom)
+            drawInductionBanner(ctx, width, height);
+
+            // Draw event details
+            drawEventDetails(ctx, width, height);
+
+            // Draw decorative elements
+            drawDecorations(ctx, width, height);
+        }
+
+        function drawTopWave(ctx, width, height) {
+            // Top decorative wave
+            const gradient = ctx.createLinearGradient(0, 0, width, 0);
+            gradient.addColorStop(0, '#8B0000');
+            gradient.addColorStop(0.5, '#1e3a8a');
+            gradient.addColorStop(1, '#FFD700');
+
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.quadraticCurveTo(width / 2, 30, width, 0);
+            ctx.lineTo(width, 80);
+            ctx.quadraticCurveTo(width / 2, 50, 0, 80);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        function drawBorder(ctx, width, height, borderWidth, maroon, gold) {
+            const innerX = borderWidth + 20;
+            const innerY = borderWidth + 100;
+            const innerWidth = width - (borderWidth + 20) * 2;
+            const innerHeight = height - innerY - (borderWidth + 80);
+
+            // Outer border (maroon)
+            ctx.strokeStyle = maroon;
+            ctx.lineWidth = 8;
+            ctx.strokeRect(innerX - 5, innerY - 5, innerWidth + 10, innerHeight + 10);
+
+            // Inner gold border
+            ctx.strokeStyle = gold;
+            ctx.lineWidth = 4;
+            ctx.strokeRect(innerX, innerY, innerWidth, innerHeight);
+
+            // Corner decorations
+            const cornerSize = 30;
+            ctx.fillStyle = gold;
+            // Top-left
+            ctx.fillRect(innerX - 5, innerY - 5, cornerSize, 8);
+            ctx.fillRect(innerX - 5, innerY - 5, 8, cornerSize);
+            // Top-right
+            ctx.fillRect(innerX + innerWidth - cornerSize + 5, innerY - 5, cornerSize, 8);
+            ctx.fillRect(innerX + innerWidth + 5, innerY - 5, 8, cornerSize);
+            // Bottom-left
+            ctx.fillRect(innerX - 5, innerY + innerHeight - 3, cornerSize, 8);
+            ctx.fillRect(innerX - 5, innerY + innerHeight - cornerSize + 3, 8, cornerSize);
+            // Bottom-right
+            ctx.fillRect(innerX + innerWidth - cornerSize + 5, innerY + innerHeight - 3, cornerSize, 8);
+            ctx.fillRect(innerX + innerWidth + 5, innerY + innerHeight - cornerSize + 3, 8, cornerSize);
+        }
+
+        function drawLogoArea(ctx, width) {
+            const centerX = width / 2;
+            const logoY = 30;
+
+            // Draw circular logo placeholder
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.beginPath();
+            ctx.arc(centerX, logoY, 45, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Logo border
+            ctx.strokeStyle = '#8B0000';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Logo text
+            ctx.fillStyle = '#8B0000';
+            ctx.font = 'bold 18px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('LOISINGHA', centerX, logoY - 5);
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('COLLEGE', centerX, logoY + 12);
+            ctx.font = 'bold 10px Arial';
+            ctx.fillText('1983', centerX, logoY + 28);
+        }
+
+        function drawHeaderText(ctx, width) {
+            const centerX = width / 2;
+            const y1 = 110;
+            const y2 = 140;
+
+            // "Welcome to" text (left)
+            ctx.fillStyle = '#1e3a8a';
+            ctx.font = 'italic 32px Georgia';
+            ctx.textAlign = 'center';
+            ctx.fillText('Welcome to', centerX - 200, y1);
+
+            // "A New Beginning, A Bright Future!" (right)
+            ctx.font = 'italic 28px Georgia';
+            ctx.fillStyle = '#8B0000';
+            ctx.fillText('A New Beginning,', centerX + 200, y1 - 10);
+            ctx.fillText('A Bright Future!', centerX + 200, y1 + 25);
+        }
+
+        function drawInductionBanner(ctx, width, height) {
+            const bannerY = height - 140;
+            const centerX = width / 2;
+            const bannerHeight = 60;
+
+            // Dark blue background for "INDUCTION"
+            ctx.fillStyle = '#1e3a8a';
+            ctx.fillRect(centerX - 250, bannerY, 500, 35);
+
+            // White text "INDUCTION"
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 42px Arial Black';
+            ctx.textAlign = 'center';
+            ctx.fillText('INDUCTION', centerX, bannerY + 28);
+
+            // Yellow background for "PROGRAMME"
+            ctx.fillStyle = '#FFD700';
+            ctx.fillRect(centerX - 250, bannerY + 35, 500, 35);
+
+            // Red text "PROGRAMME"
+            ctx.fillStyle = '#8B0000';
+            ctx.font = 'bold 38px Arial Black';
+            ctx.fillText('PROGRAMME', centerX, bannerY + 64);
+
+            // Subtitle text
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 18px Arial';
+            ctx.fillText('for', centerX, bannerY + 95);
+
+            ctx.fillStyle = '#1e3a8a';
+            ctx.font = 'bold 20px Arial';
+            ctx.fillText('+2 1ST YEAR STUDENTS', centerX, bannerY + 125);
+        }
+
+        function drawEventDetails(ctx, width, height) {
+            const detailsY = height - 70;
+            const boxWidth = 140;
+            const boxHeight = 50;
+            const spacing = 40;
+            const startX = (width - (boxWidth * 3 + spacing * 2)) / 2;
+
+            // Box styling
+            ctx.fillStyle = 'rgba(30, 58, 138, 0.9)';
+            ctx.strokeStyle = '#8B0000';
+            ctx.lineWidth = 2;
+
+            // Date box
+            ctx.fillRect(startX, detailsY, boxWidth, boxHeight);
+            ctx.strokeRect(startX, detailsY, boxWidth, boxHeight);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('📅 DATE', startX + boxWidth / 2, detailsY + 16);
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('23-07-2026', startX + boxWidth / 2, detailsY + 36);
+
+            // Time box
+            const timeX = startX + boxWidth + spacing;
+            ctx.fillStyle = 'rgba(139, 0, 0, 0.9)';
+            ctx.fillRect(timeX, detailsY, boxWidth, boxHeight);
+            ctx.strokeStyle = '#1e3a8a';
+            ctx.strokeRect(timeX, detailsY, boxWidth, boxHeight);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('🕐 TIME', timeX + boxWidth / 2, detailsY + 16);
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('11:30 AM', timeX + boxWidth / 2, detailsY + 36);
+
+            // Venue box
+            const venueX = timeX + boxWidth + spacing;
+            ctx.fillStyle = 'rgba(255, 215, 0, 0.3)';
+            ctx.fillRect(venueX, detailsY, boxWidth, boxHeight);
+            ctx.strokeStyle = '#8B0000';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(venueX, detailsY, boxWidth, boxHeight);
+            ctx.fillStyle = '#1e3a8a';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('📍 VENUE', venueX + boxWidth / 2, detailsY + 16);
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('Room No - 3', venueX + boxWidth / 2, detailsY + 36);
+        }
+
+        function drawDecorations(ctx, width, height) {
+            // Left side decorations
+            const leftX = 20;
+            const spacing = 50;
+
+            ctx.fillStyle = 'rgba(30, 58, 138, 0.3)';
+            ctx.font = '24px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('✈️', leftX, 200);
+            ctx.fillText('📚', leftX, 250);
+            ctx.fillText('⭐', leftX, 300);
+            ctx.fillText('📖', leftX, 400);
+            ctx.fillText('⭐', leftX, 450);
+
+            // Right side decorations
+            const rightX = width - 40;
+            ctx.textAlign = 'right';
+            ctx.fillText('🎓', rightX, 220);
+            ctx.fillText('⭐', rightX, 280);
+            ctx.fillText('⭐', rightX, 330);
+            ctx.fillText('📕', rightX, 430);
+            ctx.fillText('⭐', rightX, 500);
+
+            // Bottom decorative text
+            ctx.fillStyle = 'rgba(139, 0, 0, 0.4)';
+            ctx.font = 'italic 16px Georgia';
+            ctx.textAlign = 'center';
+            ctx.fillText('We Welcome You to be a part of the Loisingha College Family', width / 2, height - 10);
+        }
+
+        function downloadFrame() {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'frame.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            alert('Frame downloaded as frame.png! Upload to assets/frame.png in your project.');
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Generate frame on page load
+        window.addEventListener('load', generateFrame);
+    </script>
+</body>
+</html>
