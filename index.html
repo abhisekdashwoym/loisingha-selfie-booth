@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Loisingha College +2 First Year Induction Programme 2026 - Selfie Booth">
+    <meta name="theme-color" content="#1e3a8a">
+    <title>Loisingha College Selfie Booth 2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Home Screen -->
+    <div id="homeScreen" class="screen active">
+        <div class="home-container">
+            <div class="home-content">
+                <img src="assets/logo.png" alt="Loisingha College Logo" class="college-logo">
+                <h1 class="college-title">+2 First Year Induction Programme</h1>
+                <h2 class="college-year">2026</h2>
+                <p class="college-subtitle">Welcome to Loisingha College</p>
+                <p class="subtitle-text">Capture your special moment with our digital frame</p>
+                <button id="startCameraBtn" class="btn btn-primary btn-large">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                    Start Camera
+                </button>
+                <div class="home-footer">
+                    <p class="info-text">📸 Capture • Preview • Download</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camera Screen -->
+    <div id="cameraScreen" class="screen">
+        <div class="camera-header">
+            <button id="backBtn" class="btn-icon-header" title="Back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <h2>Camera View</h2>
+            <div class="header-space"></div>
+        </div>
+
+        <div class="camera-container">
+            <!-- Camera Preview -->
+            <video id="cameraPreview" class="camera-preview" autoplay playsinline></video>
+            
+            <!-- Frame Overlay -->
+            <img id="frameOverlay" src="assets/frame.png" alt="Selfie Frame" class="frame-overlay">
+            
+            <!-- Countdown Display -->
+            <div id="countdownDisplay" class="countdown-display hidden">
+                <div class="countdown-number">3</div>
+            </div>
+            
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="loading-spinner hidden">
+                <div class="spinner"></div>
+                <p>Initializing camera...</p>
+            </div>
+
+            <!-- Camera Controls -->
+            <div class="camera-controls">
+                <button id="captureBtn" class="btn btn-capture" title="Capture Photo">
+                    <div class="capture-circle"></div>
+                </button>
+            </div>
+
+            <!-- Secondary Controls (Hidden by default) -->
+            <div id="secondaryControls" class="secondary-controls hidden">
+                <button id="retakeBtn" class="btn btn-secondary" title="Retake Photo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 7v6h6"></path>
+                        <path d="M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13"></path>
+                    </svg>
+                    Retake
+                </button>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="error-message hidden">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+            <p id="errorText"></p>
+            <button id="errorCloseBtn" class="btn btn-secondary">Close</button>
+        </div>
+    </div>
+
+    <!-- Preview Screen -->
+    <div id="previewScreen" class="screen">
+        <div class="preview-header">
+            <h2>Your Selfie</h2>
+        </div>
+
+        <div class="preview-container">
+            <canvas id="previewCanvas" class="preview-image"></canvas>
+            <div id="previewLoading" class="preview-loading hidden">
+                <div class="spinner"></div>
+                <p>Processing your photo...</p>
+            </div>
+        </div>
+
+        <div class="preview-controls">
+            <button id="retakeFinalBtn" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 7v6h6"></path>
+                    <path d="M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13"></path>
+                </svg>
+                Retake
+            </button>
+            <button id="downloadBtn" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Photo
+            </button>
+        </div>
+
+        <div id="downloadSuccess" class="success-message hidden">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            <p>Photo downloaded successfully!</p>
+        </div>
+    </div>
+
+    <!-- Permission Denied Screen -->
+    <div id="permissionScreen" class="screen">
+        <div class="permission-container">
+            <svg class="permission-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+            <h2>Camera Permission Required</h2>
+            <p>To use the selfie booth, we need access to your camera. Please grant camera permission and try again.</p>
+            <div class="permission-steps">
+                <h3>How to enable camera:</h3>
+                <ol>
+                    <li>Look for the camera icon in your browser's address bar</li>
+                    <li>Click on it and select "Allow"</li>
+                    <li>Refresh the page</li>
+                </ol>
+            </div>
+            <button id="retryPermissionBtn" class="btn btn-primary" onclick="location.reload()">
+                Retry
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

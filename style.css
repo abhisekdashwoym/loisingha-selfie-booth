@@ -1,0 +1,843 @@
+/* ======================================== */
+/* LOISINGHA COLLEGE SELFIE BOOTH - STYLES */
+/* ======================================== */
+
+/* ============ ROOT VARIABLES ============ */
+:root {
+    /* Colors - College Theme (Blue & White) */
+    --primary-color: #1e3a8a;
+    --primary-dark: #1e40af;
+    --primary-light: #3b82f6;
+    --secondary-color: #0f172a;
+    --accent-color: #60a5fa;
+    --success-color: #10b981;
+    --error-color: #ef4444;
+    --warning-color: #f59e0b;
+    
+    /* Neutral Colors */
+    --white: #ffffff;
+    --light-gray: #f9fafb;
+    --medium-gray: #e5e7eb;
+    --dark-gray: #6b7280;
+    --text-color: #1f2937;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-2xl: 2rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    
+    /* Transitions */
+    --transition-fast: 150ms ease-in-out;
+    --transition-base: 300ms ease-in-out;
+    --transition-slow: 500ms ease-in-out;
+    
+    /* Font Sizes */
+    --font-xs: 0.75rem;
+    --font-sm: 0.875rem;
+    --font-base: 1rem;
+    --font-lg: 1.125rem;
+    --font-xl: 1.25rem;
+    --font-2xl: 1.5rem;
+    --font-3xl: 1.875rem;
+    --font-4xl: 2.25rem;
+    --font-5xl: 3rem;
+}
+
+/* ============ GENERAL STYLES ============ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* ============ SCREEN MANAGEMENT ============ */
+.screen {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.screen.active {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============ HOME SCREEN ============ */
+#homeScreen {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-lg);
+}
+
+.home-content {
+    text-align: center;
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.college-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: var(--spacing-lg);
+    animation: bounce 2s infinite;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.college-title {
+    font-size: var(--font-2xl);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.college-year {
+    font-size: var(--font-4xl);
+    font-weight: 800;
+    color: #60a5fa;
+    margin-bottom: var(--spacing-md);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.college-subtitle {
+    font-size: var(--font-xl);
+    color: var(--white);
+    margin-bottom: var(--spacing-sm);
+}
+
+.subtitle-text {
+    font-size: var(--font-sm);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.btn-large {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    margin: var(--spacing-lg) auto;
+    min-width: 200px;
+}
+
+.btn-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: var(--spacing-md);
+    display: inline-block;
+}
+
+.home-footer {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-text {
+    font-size: var(--font-sm);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ============ CAMERA SCREEN ============ */
+#cameraScreen {
+    background: var(--secondary-color);
+    flex-direction: column;
+}
+
+.camera-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 20;
+}
+
+.camera-header h2 {
+    color: var(--white);
+    font-size: var(--font-lg);
+}
+
+.btn-icon-header {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    transition: all var(--transition-base);
+    backdrop-filter: blur(10px);
+}
+
+.btn-icon-header:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.btn-icon-header:active {
+    transform: scale(0.95);
+}
+
+.btn-icon-header svg {
+    width: 24px;
+    height: 24px;
+}
+
+.header-space {
+    width: 40px;
+}
+
+.camera-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: var(--secondary-color);
+}
+
+.camera-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.frame-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: 15;
+}
+
+/* ============ COUNTDOWN DISPLAY ============ */
+.countdown-display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 25;
+}
+
+.countdown-number {
+    font-size: 80px;
+    font-weight: 900;
+    color: var(--white);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    animation: countdownPulse 1s ease-out;
+}
+
+@keyframes countdownPulse {
+    0% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+/* ============ LOADING SPINNER ============ */
+.loading-spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 25;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid var(--white);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-spinner p {
+    color: var(--white);
+    margin-top: var(--spacing-lg);
+    font-size: var(--font-sm);
+}
+
+/* ============ CAMERA CONTROLS ============ */
+.camera-controls {
+    position: absolute;
+    bottom: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(--spacing-lg);
+    z-index: 20;
+}
+
+.btn-capture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    border: 4px solid var(--white);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-xl);
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+.btn-capture:hover {
+    transform: scale(1.1);
+    box-shadow: 0 20px 40px rgba(60, 130, 246, 0.4);
+}
+
+.btn-capture:active {
+    transform: scale(0.95);
+}
+
+.capture-circle {
+    width: 60px;
+    height: 60px;
+    background: var(--white);
+    border-radius: 50%;
+    animation: captureRipple 1s ease-out infinite;
+}
+
+@keyframes captureRipple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+.secondary-controls {
+    position: absolute;
+    bottom: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(--spacing-lg);
+    z-index: 20;
+}
+
+/* ============ ERROR MESSAGE ============ */
+.error-message {
+    position: absolute;
+    bottom: var(--spacing-xl);
+    left: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: rgba(239, 68, 68, 0.95);
+    backdrop-filter: blur(10px);
+    color: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    z-index: 30;
+    box-shadow: var(--shadow-xl);
+    animation: slideUp 0.3s ease-out;
+}
+
+.error-message svg {
+    width: 24px;
+    height: 24px;
+    margin-bottom: var(--spacing-md);
+}
+
+.error-message p {
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-sm);
+}
+
+/* ============ PREVIEW SCREEN ============ */
+#previewScreen {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    flex-direction: column;
+}
+
+.preview-header {
+    padding: var(--spacing-lg);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.preview-header h2 {
+    color: var(--white);
+    font-size: var(--font-lg);
+}
+
+.preview-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    background: var(--white);
+}
+
+.preview-loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 20;
+}
+
+.preview-loading p {
+    color: var(--white);
+    margin-top: var(--spacing-lg);
+}
+
+.preview-controls {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(16, 185, 129, 0.95);
+    backdrop-filter: blur(10px);
+    color: var(--white);
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    z-index: 40;
+    box-shadow: var(--shadow-xl);
+    animation: popIn 0.4s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.success-message svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--spacing-md);
+}
+
+.success-message p {
+    font-size: var(--font-lg);
+    font-weight: 600;
+}
+
+/* ============ PERMISSION SCREEN ============ */
+#permissionScreen {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.permission-container {
+    text-align: center;
+    padding: var(--spacing-lg);
+    max-width: 400px;
+    animation: slideUp 0.6s ease-out;
+}
+
+.permission-icon {
+    width: 80px;
+    height: 80px;
+    color: var(--white);
+    margin: 0 auto var(--spacing-lg);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.permission-container h2 {
+    color: var(--white);
+    font-size: var(--font-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.permission-container p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--spacing-lg);
+}
+
+.permission-steps {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    text-align: left;
+}
+
+.permission-steps h3 {
+    color: var(--white);
+    font-size: var(--font-base);
+    margin-bottom: var(--spacing-md);
+}
+
+.permission-steps ol {
+    list-style-position: inside;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-sm);
+}
+
+.permission-steps li {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ============ BUTTONS ============ */
+.btn {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.6);
+}
+
+.btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-secondary:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ============ UTILITIES ============ */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: flex !important;
+}
+
+/* ============ TOAST NOTIFICATIONS ============ */
+#toast {
+    position: fixed;
+    bottom: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%) translateY(150px);
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--white);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-sm);
+    z-index: 50;
+    opacity: 0;
+    transition: all var(--transition-base);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ============ RESPONSIVE DESIGN ============ */
+
+/* Tablet (768px and up) */
+@media (min-width: 768px) {
+    .college-logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .college-title {
+        font-size: var(--font-3xl);
+    }
+
+    .college-year {
+        font-size: var(--font-5xl);
+    }
+
+    .btn-large {
+        padding: var(--spacing-xl) var(--spacing-2xl);
+        min-width: 250px;
+    }
+
+    .camera-controls {
+        bottom: var(--spacing-2xl);
+    }
+
+    .btn-capture {
+        width: 100px;
+        height: 100px;
+    }
+
+    .capture-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .preview-controls {
+        gap: var(--spacing-lg);
+    }
+}
+
+/* Large screens (1024px and up) */
+@media (min-width: 1024px) {
+    .college-title {
+        font-size: var(--font-4xl);
+    }
+
+    .college-year {
+        font-size: 5rem;
+    }
+
+    .preview-controls {
+        padding: var(--spacing-2xl);
+    }
+}
+
+/* Landscape orientation */
+@media (orientation: landscape) and (max-height: 500px) {
+    .home-content {
+        padding: var(--spacing-md);
+    }
+
+    .college-logo {
+        width: 50px;
+        height: 50px;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .college-title {
+        font-size: var(--font-lg);
+    }
+
+    .college-year {
+        font-size: var(--font-2xl);
+    }
+
+    .btn-large {
+        padding: var(--spacing-md) var(--spacing-lg);
+        min-width: auto;
+    }
+
+    .camera-controls {
+        bottom: var(--spacing-md);
+    }
+
+    .btn-capture {
+        width: 60px;
+        height: 60px;
+    }
+
+    .capture-circle {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Touch device optimization */
+@media (hover: none) and (pointer: coarse) {
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .btn:active {
+        background-filter: brightness(0.9);
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    }
+
+    .permission-steps {
+        background: rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
