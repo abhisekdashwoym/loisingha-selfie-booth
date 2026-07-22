@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Logo Placeholder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #1e3a8a;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            background: #3b82f6;
+            color: white;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background: #1e3a8a;
+            transform: translateY(-2px);
+        }
+        canvas {
+            display: block;
+            margin: 20px auto;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            max-width: 100%;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #1e3a8a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏫 College Logo Generator</h1>
+        <p>Generate a placeholder logo for your selfie booth</p>
+        
+        <div class="info">
+            <p><strong>Instructions:</strong></p>
+            <p>1. Click "Generate Logo"</p>
+            <p>2. Click "Download as PNG"</p>
+            <p>3. Replace with your actual college logo (optional)</p>
+        </div>
+
+        <button onclick="generateLogo()">🎨 Generate Logo</button>
+        <button onclick="downloadLogo()">📥 Download as PNG</button>
+        <button onclick="clearCanvas()">🗑️ Clear</button>
+
+        <canvas id="logoCanvas" width="200" height="200"></canvas>
+
+        <div class="info">
+            <p><strong>Logo Details:</strong></p>
+            <p>• Dimensions: 200 x 200 pixels</p>
+            <p>• Format: PNG with transparency</p>
+            <p>• Save as: assets/logo.png</p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('logoCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function generateLogo() {
+            const size = canvas.width;
+            const center = size / 2;
+
+            // Clear canvas (transparent)
+            ctx.clearRect(0, 0, size, size);
+
+            // Draw outer circle (dark blue)
+            ctx.fillStyle = '#1e3a8a';
+            ctx.beginPath();
+            ctx.arc(center, center, center - 5, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Draw inner circle (white)
+            ctx.fillStyle = '#FFFFFF';
+            ctx.beginPath();
+            ctx.arc(center, center, center - 15, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Draw college emblem (simplified)
+            ctx.fillStyle = '#8B0000';
+            
+            // Top part (book)
+            ctx.fillRect(center - 30, center - 40, 60, 20);
+            ctx.fillRect(center - 35, center - 20, 18, 30);
+            ctx.fillRect(center + 17, center - 20, 18, 30);
+
+            // Middle part (circle)
+            ctx.beginPath();
+            ctx.arc(center, center, 15, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Bottom part (torch/flame)
+            ctx.beginPath();
+            ctx.moveTo(center, center + 20);
+            ctx.lineTo(center - 8, center + 40);
+            ctx.lineTo(center - 3, center + 35);
+            ctx.lineTo(center + 3, center + 40);
+            ctx.lineTo(center + 8, center + 35);
+            ctx.closePath();
+            ctx.fill();
+
+            // Draw outer border
+            ctx.strokeStyle = '#FFD700';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.arc(center, center, center - 10, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Add text
+            ctx.fillStyle = '#1e3a8a';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('LOISINGHA', center, center + 70);
+            ctx.font = 'bold 10px Arial';
+            ctx.fillText('COLLEGE', center, center + 85);
+            ctx.font = 'bold 9px Arial';
+            ctx.fillText('1983', center, center + 100);
+        }
+
+        function downloadLogo() {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'logo.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            alert('Logo downloaded as logo.png! Upload to assets/logo.png in your project.');
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Generate on load
+        window.addEventListener('load', generateLogo);
+    </script>
+</body>
+</html>
